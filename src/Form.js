@@ -54,10 +54,10 @@ export default function Form() {
                 setFormState({
                     name: "",
                     size: "",
-                    pepperoni: "",
-                    bacon: "",
-                    jalapenos: "",
-                    onions: "",
+                    pepperoni: false,
+                    bacon: false,
+                    jalapenos: false,
+                    onions: false,
                     instruction: "" 
                 })
             })
@@ -105,6 +105,27 @@ export default function Form() {
                 </select>
                 {errors.size.length > 0 ? <p className="error">{errors.size}</p> : null}
             </label>
+            <label htmlFor="pepperoni" className="toppings">
+                Pepperoni
+                <input id="pepperoni" type="checkbox" name="pepperoni" data-cy="pepperoni" checked={formState.pepperoni} onChange={inputChange} />
+            </label>
+            <label htmlFor="bacon" className="toppings">
+                Bacon
+                <input id="bacon" type="checkbox" name="bacon" data-cy="bacon" checked={formState.bacon} onChange={inputChange} />
+            </label>
+            <label htmlFor="jalapenos" className="toppings">
+                Jalapenos
+                <input id="jalapenos" type="checkbox" name="jalapenos" data-cy="jalapenos" checked={formState.jalapenos} onChange={inputChange} />
+            </label>
+            <label htmlFor="onions" className="toppings">
+                Onions
+                <input id="onions" type="checkbox" name="onions" data-cy="onions" checked={formState.onions} onChange={inputChange} />
+            </label>
+            <label htmlFor="instruction">
+                Special Instructions
+                <textarea id="instruction" name="instruction" data-cy="instruction" value={formState.instruction} onChange={inputChange} />
+            </label>
+            <button type="submit" data-cy="submit" disabled={buttonDisabled}>Place Order</button>
         </form>
     )
 }
