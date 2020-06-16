@@ -59,12 +59,12 @@ select {
 
 select:focus {
   outline: none;
-  border-color: #00ff1d;
+  border-color: hsl(24, 100%, 50%);
 }
 
 input:focus {
   outline: none;
-  border-color: #00ff1d;
+  border-color: hsl(24, 100%, 50%);
 }
 
 input:placeholder {

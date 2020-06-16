@@ -27,12 +27,12 @@ export default function Form() {
     const [buttonDisabled, setButtonDisable] = useState(true);
     const formSchema = yup.object().shape({
         name: yup.string().min(2).required("Name must be at least 2 characters"),
-        size: yup.mixed().oneOf(["small", "medium", "large"]).defined(),
-        pepperoni: yup.boolean(),
-        bacon: yup.boolean(),
-        jalapenos: yup.boolean(),
-        onions: yup.boolean(),
-        instruction: yup.string()
+        size: yup.mixed().oneOf(["small", "medium", "large"]).defined().required("Must select a size"),
+        pepperoni: yup.boolean().oneOf([true, false]),
+        bacon: yup.boolean().defined(),
+        jalapenos: yup.boolean().defined(),
+        onions: yup.boolean().defined(),
+        instruction: yup.string().notRequired()
     });
 
     useEffect(() => {
@@ -83,7 +83,8 @@ export default function Form() {
         console.log("changed", e.target.value);
         console.log("name of input that fired event", e.target.name);
         const newFormData = {
-            ...formState
+            ...formState,
+            [e.target.name]:e.target.type === "checkbox" ? e.target.checked : e.target.value
         }
         setFormState(newFormData);
     }
@@ -126,6 +127,7 @@ export default function Form() {
                 <textarea id="instruction" name="instruction" data-cy="instruction" value={formState.instruction} onChange={inputChange} />
             </label>
             <button type="submit" data-cy="submit" disabled={buttonDisabled}>Place Order</button>
+            <pre>{JSON.stringify(post, null, 2)}</pre>
         </form>
     )
 }

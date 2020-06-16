@@ -15,6 +15,12 @@ const App = () => {
           <button className="App-link" name="pizza">Order Pizza</button>
         </Link>
       </nav>
+      <div className="App">
+        <Switch>
+          <Route exact path="/" />
+          <Route path="/pizza" component={Form} />
+        </Switch>
+      </div>
     </Router>
   );
 };
